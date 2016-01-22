@@ -1,14 +1,11 @@
 <legend><img src="images/icons/folder.png" alt=""> {{folder.name}}</legend>
 
-
 <div class="text-right">
   <button class="btn btn-success btn-sm" ng-click="createBookmark()"><i class="glyphicon glyphicon-bookmark"></i> New Bookmark</button>
   <button class="btn btn-success btn-sm" ng-click="createFolder()"><i class="glyphicon glyphicon-folder-open"></i> New Folder</button>
   <button class="btn btn-success btn-sm" ng-click="deleteAllBookmarks()">delete all bookmarks</button>
-  <button class="btn btn-success btn-sm" ng-click="updatemodifiedDate()"><i class="glyphicon glyphicon-folder-open"></i> Update Last changed</button>
 </div>
 
-<pre> {{ folder | json }}</pre>
 <ul >
 
   <li class="grid-view-icons folder" ng-repeat="folder in folder.childFolders">

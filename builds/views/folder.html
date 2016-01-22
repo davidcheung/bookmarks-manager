@@ -1,0 +1,19 @@
+<legend>Your folders</legend>
+
+<div class="text-right">
+  <button class="btn btn-sm btn-success" ng-click="createFolder()"><i class="glyphicon glyphicon-folder-open"></i> New Folder</button>
+</div>
+
+<ul>
+
+  <li class="grid-view-icons folder" ng-repeat="folder in folders">
+    <button style="right:2px;" class="util-icon" ng-click="deleteFolder()">X</button>
+    <button style="right:22px;" class="util-icon" ng-click="editFolder()">edit</button>
+    <a onclick="javascript:void(0)" ng-click="folderNav()">
+    <div><img src="images/icons/folder.png" alt=""></div>
+    <div>{{ folder.name }}</div>
+    </a>
+  </li>
+</ul>
+
+<div class="clear"></div>

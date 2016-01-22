@@ -1,0 +1,25 @@
+{
+  "ids": {
+    "AccessToken": 1,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1,
+    "folder": 3,
+    "bookmark": 1,
+    "user": 1,
+    "human": 1
+  },
+  "models": {
+    "AccessToken": {},
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {},
+    "folder": {
+      "1": "{\"name\":\"myFolder1\",\"id\":1}",
+      "2": "{\"name\":\"myFolder2\",\"id\":2}"
+    },
+    "bookmark": {},
+    "user": {},
+    "human": {}
+  }
+}

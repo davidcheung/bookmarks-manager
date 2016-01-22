@@ -1,5 +1,6 @@
 {
   "name": "bookmark",
+  "description": "Bookmark is a model that represents bookmarks,\nin a digital form",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -23,6 +24,12 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }

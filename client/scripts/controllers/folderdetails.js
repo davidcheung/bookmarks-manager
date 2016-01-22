@@ -29,6 +29,9 @@ angular.module('bookmarksApp')
 
       }, function (res) {
         console.log(res);
+        window.folderRes = res;
+        //console.log( Object.getOwnPropertyNames(res.bookmarks[0]) );
+        window.bookmark = res.bookmarks[0];
         $scope.folder = res;
       },
         function (res) {//error handling?
@@ -43,11 +46,14 @@ angular.module('bookmarksApp')
       if (!name) {
         alert("Folder name cannot be null"); return;
       }
+      var mydate = moment().utc().startOf('day').toDate();
       var params = {
         name: name,
         "parentId": this.folder.id,
-        userId: User.getCurrentId()
+        userId: User.getCurrentId(),
+        modifiedDate : mydate
       };
+      console.log("Submitted date : ",mydate);
       Folder.create(params, function () {
         $scope.getFolder();
       });
@@ -120,6 +126,19 @@ angular.module('bookmarksApp')
       });
     }
 
+    $scope.updatemodifiedDate = function(){
+      var id = this.folder.id;
+     // console.log( this.folder);return;
+      var params = { id : id};
+      var postData = {"modifiedDate" : new Date() };
+      console.log( postData);
+      this.folder.$prototype$updateAttributes(
+        postData,
+        function(res){
+        console.log( "omg" , res)
+      })
+    }
+
 
     $scope.deleteBookmark = function(){
       //console.log( this );
@@ -128,6 +147,13 @@ angular.module('bookmarksApp')
       Bookmark.removeById( params,function(){
         $scope.getFolder();
       })
+    }
+    $scope.deleteAllBookmarks = function(){
+      //$prototype$__destroyById__bookmarks
+      window.assignFolder = this.folder.$prototype$__destroyById__bookmarks(
+        function(){
+          $scope.getFolder();
+        });
     }
 
     $scope.editBookmark = function(){

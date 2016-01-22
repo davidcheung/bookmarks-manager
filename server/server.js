@@ -24,4 +24,10 @@ boot(app, __dirname, function(err) {
   // start the server if `$ node server.js`
   if (require.main === module)
     app.start();
-});
+  // var myclasses = [];
+  //   app.handler('rest').adapter.getClasses().forEach(function(c) {
+  //     if ( c.name =='folder'){
+  //       console.log( c.ctor );
+  //     }
+  //   });
+  });

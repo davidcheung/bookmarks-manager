@@ -16,10 +16,39 @@ module.exports = function(Folder) {
      	cb( null, data.filter(function(e){return e}) );
       });
   }
+  Folder.returnAbsolutelyNothing = function(cb){
+    cb(null,null);
+  }
+
+  Folder.returnLonelyValue = function(cb){
+    cb(null, { foo :[ {a :'foo\xC1\xE1\u0102\u03A9asd><=$~!@#$%^&*()-_=+/.,;\'"[]{}?'}, 
+      {"b" : 2}]} );
+  }
+
+  Folder.remoteMethod("returnLonelyValue",{
+    returns : {
+      root: true,
+      xml : {  wrapperElement: false, declaration : false }
+    },
+    http: {
+      path: '/returnLonelyValue',
+      verb: 'get'
+    }
+  })
+  Folder.remoteMethod("returnAbsolutelyNothing",{
+    returns :null,
+    http: {
+      path: '/returnAbsolutelyNothing',
+      verb: 'get'
+    }
+
+  })
   Folder.remoteMethod("tree",{
   	returns : {
   		arg : "folders",
-  		type : "folders"
+  		type : "folders",
+      root: true,
+      xml : {  wrapperElement: false, declaration : false }
   	},
   	http: {
       path: '/tree',
@@ -27,4 +56,19 @@ module.exports = function(Folder) {
     }
 
   })
+  // Folder.remoteMethod("tree",{
+  //   returns : {
+  //     arg : "custom",
+  //     type : "xml",
+  //     root : true,
+  //     http: function(ctx){
+  //       return ctx.res.set('Content-Type', 'text/xml');
+  //     }
+  //   },
+  //   http: {
+  //     path: '/tree',
+  //     verb: 'get'
+  //   }
+
+  // })
 };

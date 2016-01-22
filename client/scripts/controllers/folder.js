@@ -27,7 +27,7 @@ angular.module('bookmarksApp')
               { userId: User.getCurrentId() },
               { parentId: 0 }
             ]
-
+            //id : { "dollarin" : [ "569d55479693af1016baa534", "569d553e9693af1016baa533"] }
             // parentId : {
             //   "inq" : 0
             // }
@@ -78,7 +78,7 @@ angular.module('bookmarksApp')
     }
     $scope.deleteFolder = function(){
       var params = { id : this.folder.id };
-      Folder.removeById( params, function(){
+      Folder.deleteById( params, function(){
         $scope.getFolders();
       })
     }

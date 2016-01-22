@@ -8,7 +8,7 @@
  * Controller of the bookmarksApp
  */
 angular.module('bookmarksApp')
-  .controller('LoginCtrl', function ($scope, $rootScope, $location, $uibModal, User) {
+  .controller('LoginCtrl', function ($scope, $rootScope, $location, $uibModal, User, LoopBackAuth) {
 
     //variables
     $scope.showError = false;
@@ -16,6 +16,10 @@ angular.module('bookmarksApp')
     $scope.user = {};
 
     $scope.init = function(){
+      console.log ( "LoopbackAuth",LoopBackAuth);
+      console.log( "Cached current",User.getCachedCurrent())
+//      console.log ( "url base",LoopBackResource.getUrlBase() );
+
       //check if user is logged in
       if (User.isAuthenticated() || User.getCurrentId()) {
         $location.path('/main')
@@ -33,19 +37,25 @@ angular.module('bookmarksApp')
     }
 
     $scope.login = function () {
-      var parameters = {};
+      var parameters = {rememberMe : ($scope.rememberMe?$scope.rememberMe:false) };
+      console.log( "Logging in with rememberMe = " ,parameters.rememberMe )
       var postData = {
         "email": $scope.user.email,
         "password": $scope.user.password
       };
-
+      // alert( JSON.stringify(postData) );
+      // return;
+      console.log( "Login Function Parameters", parameters );
       User.login(
         parameters,
         postData,
         function onSuccess(res, headers) {
+          console.log( "Login Res", res );
+          console.log( "Headers Res", headers() );
           //logged in
           $location.path('/');
           $rootScope.$emit('loginEvent', 'succesful login');
+
         },
         function onError(res, headers) {
           //failed to login

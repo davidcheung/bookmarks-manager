@@ -1,0 +1,14 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+
+<script type="text/javascript">
+	function submitform(){
+		console.log( $('#asd').serialize());
+	}
+
+</script>
+<form id="asd" onsubmit="return">
+	<input type="text" name="name" value="">
+	<input type="hidden" name="rememberme" value="false">
+	<input type="checkbox" value="true" name="rememberme" >
+	<button onclick="submitform">submit</button>
+</form>

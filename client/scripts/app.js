@@ -36,4 +36,13 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+      // console.log(LoopBackResourceProvider)
+  })
+  /*.service('sharedProperties',['LoopBackResourceProvider',function(LoopBackResourceProvider){
+    var _urlBase = LoopBackResourceProvider.getUrlBase();
+    return {
+      getUrlBase : function(){
+        return _urlBase;
+      }
+    }
+  }])*/;
